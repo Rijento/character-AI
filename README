@@ -1,0 +1,30 @@
+Hello Dr. S,
+I wanted to let you know about how to use this program as well as give you the specs of my PC and some times so you know that it will actually finish before the end of time.
+
+I've included my copy of Julia with (hopefully) all of the libraries already installed.
+Run ./julia/julia-1.4.1/bin/julia to get julia shell
+
+You may need to edit the code to better suit the specs of your PC but I digress.
+
+My PC Specs:
+Memory:     32 gigs
+Processor:  8 core I7 @ 2.80GHz
+OS:         64-bit Ubuntu 18.04.4 LTS
+
+How to load and use file:
+    1: open the Julia shell
+    2: run include("AITrainer.jl")
+    3: wait till it finishes. It takes my pc about 2.5 minutes.
+        Note: All of the lines in the lines folder are automatically split up and converted to the proper image formats
+            to display them, run plot(plot.(my_imgs[x:y])...) with x and y being the bounds for the array
+        NOTE NOTE: Julia, unlike other programming languages, starts at 1 instead of 0 when it comes to arrays. So keep that in mind
+    4: to train the AI using the MNIST and EMNIST data sets, simply run train(). This will take a while, to be exact it took my pc 24.5 minutes.
+        This is mostly because it has 60,000,000 images in total in it's current dataset.
+        The loss function should get down to about 0.5 which is not ideal but as low as I've gotten it without splitting the AI into two for digits and characters seperately
+        Note: if the loss funciton that runs periodically returns a NAN error, then the AI has been overtrained and will think everything is a 0
+            if this happens, lower the number of repeats through the dataset in the train() funciton.
+    5: to get output from the trained neural net, run getOutput.(my_imgs[x:y]), x and y being the lower and upper bound of the array.
+        Note: again, julia starts at 1 not 0. also you can see how well it holds up on the training data by substituting my_imgs for digit_imgs or char_imgs
+        Note: the first 100 images of the training data are left out so that you can test with them.
+    6: To compare the output to the actual text, use [getOutput.(my_imgs[x:y]), toOutput.(my_labels[x:y].+1)]
+    it will appear as two lines with the top line being the AI's output and the bottom line being the real values.
